@@ -110,6 +110,7 @@ data = [
 class Test_get_data(unittest.TestCase):
 
     def test_get(self):
+        self.assertEqual(jsonptr.get('/0/A',data), [1,2,3])
         self.assertEqual(jsonptr.get('/0/A/0',data), 1)
         self.assertEqual(jsonptr.get('/0/A/1',data), 2)
         self.assertEqual(jsonptr.get('/0/A/-1',data), 3)
