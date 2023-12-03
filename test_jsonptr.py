@@ -97,28 +97,24 @@ class Test_get(unittest.TestCase):
         res = jsonptr.get(ptrexpr, test_data)
         self.assertEqual(res, 8)
 
-test_data2 = [
+data = [
     {
         "A":[1,2,3],
-    }
+        "B":{
+            "C":4
+        }
+    },
+    "D"
 ]
 
-class Test_get_2(unittest.TestCase):
+class Test_get_data(unittest.TestCase):
 
-    def test_get_1(self):
-        ptrexpr = "/-1/A/-1"
-        res = jsonptr.get(ptrexpr, test_data2)
-        self.assertEqual(res, 3)
-
-    def test_get_2(self):
-        ptrexpr = "/0/A/0"
-        res = jsonptr.get(ptrexpr, test_data2)
-        self.assertEqual(res, 1)
-
-    # def test_get_3(self):
-    #     ptrexpr = "/1/A/0"
-    #     res = jsonptr.get(ptrexpr, test_data2)
-    #     self.assertEqual(res, 1)
+    def test_get(self):
+        self.assertEqual(jsonptr.get('/0/A/0',data), 1)
+        self.assertEqual(jsonptr.get('/0/A/1',data), 2)
+        self.assertEqual(jsonptr.get('/0/A/-1',data), 3)
+        self.assertEqual(jsonptr.get('/0/B/C', data), 4)
+        self.assertEqual(jsonptr.get('/1', data), "D")
 
 if __name__ == '__main__':
     unittest.main()

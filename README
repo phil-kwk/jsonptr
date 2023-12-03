@@ -1,0 +1,24 @@
+# jsonptr implementation rfc6901
+
+simple implementation for accesing json compatible data using jsonptr notation
+
+Usage Example:
+```
+import jsonptr
+
+data = [
+    {
+        "A":[1,2,3],
+        "B":{
+            "C":4
+        }
+    },
+    "D"
+]
+
+assertEqual(jsonptr.get('/0/A/0',data), 1)
+assertEqual(jsonptr.get('/0/A/1',data), 2)
+assertEqual(jsonptr.get('/0/A/-1',data), 3)
+assertEqual(jsonptr.get('/0/B/C', data), 4)
+assertEqual(jsonptr.get('/1', data), "D")
+```
